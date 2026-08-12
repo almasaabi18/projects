@@ -23,18 +23,14 @@
 .count{background:var(--p);color:#fff}.count .brand p{color:rgba(255,255,255,.45)}.count-wrap{height:calc(100% - 65px);display:grid;place-items:center;text-align:center;position:relative}.count-wrap:before,.count-wrap:after{content:"";position:absolute;border:1px solid rgba(255,255,255,.09);border-radius:50%}.count-wrap:before{width:720px;height:720px}.count-wrap:after{width:470px;height:470px}.count-content{z-index:2}.count-kicker{font-size:9px;color:var(--gold);letter-spacing:3px;font-weight:800}.count h2{font-size:29px;margin:9px 0 28px}.timer{direction:rtl;display:flex;align-items:center;justify-content:center;gap:10px}.tbox{width:108px;padding:15px 4px;border:1px solid rgba(255,255,255,.08);border-radius:17px;background:rgba(0,0,0,.08)}.tnum{font-size:57px;font-weight:800;line-height:1}.tlabel{font-size:8px;opacity:.5;margin-top:6px}.colon{font-size:34px;opacity:.25}.count-foot{font-size:9px;opacity:.45;margin-top:23px}
 @media(max-width:1000px){.live-command{grid-template-columns:1fr}.live-update-panel,.count-panel{height:auto;min-height:420px}html,body{overflow:auto}.screen{position:relative;min-height:100vh;height:auto}.hero{grid-template-columns:1fr}.hero-art{min-height:350px}.project-grid{height:auto;grid-template-columns:1fr}.card{min-height:430px}}
 
-/* V6 Executive Command Center */
 .command-home{height:calc(100% - 58px);display:grid;grid-template-columns:1.02fr .98fr;grid-template-rows:1fr auto;position:relative;align-items:center;gap:0 10px;overflow:hidden}
 .command-home:before{content:"";position:absolute;width:760px;height:760px;border:1px solid rgba(81,37,102,.07);border-radius:50%;right:-220px;top:-250px}
 .home-intro{position:relative;z-index:3;padding-right:28px}.home-intro h2{font-size:clamp(52px,5.2vw,86px);line-height:1.03;letter-spacing:-3px;margin:16px 0 20px;display:flex;flex-direction:column;gap:20px}.home-intro p{max-width:560px;color:#686169;font-size:13px;line-height:2.05;margin:0}.gold-rule{height:4px;width:90px;background:var(--gold);border-radius:8px;margin-top:24px}.orbit-stage{height:500px;position:relative;display:grid;place-items:center}.orbit{position:absolute;border:1px solid rgba(81,37,102,.13);border-radius:50%;transform:rotate(-16deg)}.o1{width:450px;height:450px}.o2{width:330px;height:330px;transform:rotate(34deg);border-color:rgba(216,163,61,.18)}.o3{width:210px;height:210px;transform:rotate(-42deg)}.command-core{width:185px;height:185px;border-radius:50%;background:var(--p);color:#fff;display:grid;place-items:center;align-content:center;text-align:center;z-index:2;box-shadow:0 25px 75px rgba(81,37,102,.28)}.core-label{font-size:9px;opacity:.62}.core-number{font-size:57px;font-weight:800;line-height:1;margin:3px 0}.command-core.pulse .core-number{animation:heroNumberPulse .8s ease both}@keyframes heroNumberPulse{0%{opacity:.35;transform:scale(.72)}55%{opacity:1;transform:scale(1.1)}100%{opacity:1;transform:scale(1)}}.core-number span{font-size:27px}.core-sub{font-size:8px;opacity:.55}.orbit-tag{position:absolute;background:rgba(255,255,255,.96);border:1px solid rgba(81,37,102,.13);border-radius:13px;padding:10px 13px;min-width:104px;box-shadow:0 12px 32px rgba(33,29,35,.08);display:flex;flex-direction:column;text-align:center;z-index:4;color:var(--p);opacity:0;transform:translateY(14px) scale(.94)}.orbit-tag b{font-size:24px;color:var(--p);line-height:1;font-variant-numeric:tabular-nums}.orbit-tag span{font-size:8px;color:var(--p);opacity:.72;margin-top:3px;font-weight:700}.tag-a{top:65px;left:9%}.tag-b{right:3%;top:46%}.tag-c{bottom:65px;left:12%}.home-strip{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,.7fr) 1.8fr;gap:9px;position:relative;z-index:5}.home-kpi,.home-next{background:rgba(255,255,255,.9);border:1px solid var(--line);border-radius:15px;padding:10px 13px;color:var(--p)}.home-kpi{display:grid;grid-template-columns:1fr auto;grid-template-rows:auto auto;align-items:center}.home-kpi span{font-size:8px;color:var(--p);font-weight:700}.home-kpi b{grid-column:2;grid-row:1/3;font-size:27px;color:var(--p);font-variant-numeric:tabular-nums}.home-kpi small{font-size:7px;color:var(--p);opacity:.62}.home-kpi.alert b{color:var(--p)}.home-next{display:grid;grid-template-columns:auto 1fr;column-gap:10px;align-items:center}.home-next small{font-size:7px;color:var(--gold);grid-row:1/3}.home-next strong{font-size:9px}.home-next span{font-size:7px;color:#817a81}
 
-/* Combined update + countdown */
 .live-command{height:calc(100% - 70px);display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:center;max-width:1250px;margin:0 auto}.live-update-panel,.count-panel{border:1px solid rgba(255,255,255,.09);border-radius:26px;background:rgba(255,255,255,.025);height:420px;min-height:420px;position:relative;overflow:hidden}.live-update-panel{padding:42px 46px;text-align:right;width:100%;height:420px}.live-update-panel:before{content:"";position:absolute;width:470px;height:470px;border:1px solid rgba(216,163,61,.08);border-radius:50%;left:-260px;bottom:-290px}.update-project{font-size:12px;color:rgba(255,255,255,.48);margin-top:14px}.live-update-panel h2{font-size:28px;line-height:1.5;margin:5px 0 0;max-width:650px}.live-update-panel .change{justify-content:flex-start;margin-top:30px}.count-panel{padding:42px 28px;display:flex;flex-direction:column;justify-content:center;text-align:center;width:100%;height:420px;background:linear-gradient(145deg,rgba(81,37,102,.75),rgba(40,17,48,.92))}.count-panel:before{content:"";position:absolute;width:360px;height:360px;border:1px solid rgba(255,255,255,.07);border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%)}.count-panel>*{position:relative;z-index:2}.count-panel h2{font-size:27px;margin:8px 0 0}.count-panel>p{font-size:9px;opacity:.45;margin:0 0 24px}.count-panel .timer{gap:5px}.count-panel .tbox{width:78px;padding:12px 2px;background:rgba(0,0,0,.12);border-color:rgba(255,255,255,.08)}.count-panel .tnum{font-size:39px}.count-panel .tlabel{font-size:7px}.count-panel .colon{font-size:25px}.count-panel .count-foot{margin-top:22px}
 
-/* readability */
 .card-title h3{font-size:20px}.team{font-size:10px}.info b{font-size:10px}.info small{font-size:8px}
 
-/* V7 motion layer */
 .home-kpi,.home-next{
   opacity:0;
   transform:translateY(18px) scale(.97);
@@ -63,12 +59,9 @@
 .od2{animation-delay:.6s}.od3{animation-delay:1.2s}
 @keyframes dotPulse{50%{transform:scale(1.7);box-shadow:0 0 0 11px rgba(216,163,61,.05)}}
 
-/* Keep the KPI numbers visually alive after the entrance. */
 .home-kpi b{transition:transform .25s ease}
 .home-kpi:hover b{transform:scale(1.05)}
 
-
-/* Completion celebration */
 .celebrate{position:absolute;inset:0;pointer-events:none;z-index:1;overflow:hidden;opacity:0}
 .card.complete .celebrate{opacity:1}
 .card.complete .balloon{position:absolute;width:19px;height:25px;border-radius:50% 50% 48% 48%;background:var(--g);top:-32px;animation:balloonDrop 2.8s cubic-bezier(.16,.7,.2,1) forwards}
@@ -84,8 +77,6 @@
 .card.complete:after{display:none !important;content:"✓ مكتمل";position:absolute;top:18px;left:18px;padding:6px 9px;border-radius:9px;background:rgba(47,149,111,.1);color:var(--g);font-size:8px;font-weight:800;opacity:0;animation:completeStamp .65s ease 1.15s forwards}
 @keyframes completeStamp{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
 
-
-/* V9 — automatic 100% celebration */
 .card.complete{
   animation-name:completeCardGlow;
   animation-duration:2.8s;
@@ -122,13 +113,11 @@
   filter:drop-shadow(0 5px 8px rgba(0,0,0,.08));
 }
 
-
 .command-core.pulse .core-number{animation:heroPctPulse .8s ease}
 @keyframes heroPctPulse{0%{transform:scale(.82);opacity:.45}55%{transform:scale(1.08);opacity:1}100%{transform:scale(1);opacity:1}}
 .orbit-stage:after{content:"";position:absolute;width:260px;height:260px;border-radius:50%;border:1px solid rgba(216,163,61,.16);transform:scale(.7);opacity:0;pointer-events:none}.active .orbit-stage:after{animation:heroHalo 2.2s ease-out 1.5s forwards}@keyframes heroHalo{0%{opacity:0;transform:scale(.7)}25%{opacity:.9}100%{opacity:0;transform:scale(1.35)}}
 .card.complete .celebrate{position:absolute;inset:0;z-index:20;pointer-events:none;overflow:hidden}.card.complete .balloon{position:absolute;width:22px;height:29px;border-radius:52% 52% 48% 48%;top:-38px;opacity:0;box-shadow:inset -4px -5px 8px rgba(0,0,0,.1),0 5px 12px rgba(0,0,0,.08)}.card.complete .balloon:after{content:"";position:absolute;top:28px;left:50%;width:1px;height:105px;background:rgba(81,37,102,.22)}.card.complete .balloon.a{right:10%;background:var(--g);animation:balloonFloat 4.4s ease-out .2s forwards}.card.complete .balloon.b{right:30%;width:18px;height:25px;background:var(--gold);animation:balloonFloat 4.1s ease-out .45s forwards}.card.complete .balloon.c{right:68%;width:20px;height:27px;background:var(--p);animation:balloonFloat 4.3s ease-out .65s forwards}.card.complete .balloon.d{right:86%;width:16px;height:23px;background:#8c5aa2;animation:balloonFloat 4s ease-out .85s forwards}@keyframes balloonFloat{0%{opacity:0;transform:translateY(-30px) rotate(0) scale(.7)}15%{opacity:1}55%{transform:translateY(72px) rotate(8deg) scale(1)}100%{opacity:.75;transform:translateY(22px) rotate(-7deg) scale(.96)}}.card.complete .confetti i{position:absolute;top:8px;width:7px;height:15px;border-radius:2px;opacity:0;animation:confettiBurst 2.6s ease-out forwards}.card.complete .confetti i:nth-child(1){right:8%;background:var(--gold);animation-delay:.2s}.card.complete .confetti i:nth-child(2){right:20%;background:var(--p);animation-delay:.34s}.card.complete .confetti i:nth-child(3){right:37%;background:var(--g);animation-delay:.48s}.card.complete .confetti i:nth-child(4){right:52%;background:var(--gold);animation-delay:.62s}.card.complete .confetti i:nth-child(5){right:66%;background:var(--p);animation-delay:.38s}.card.complete .confetti i:nth-child(6){right:79%;background:var(--g);animation-delay:.72s}.card.complete .confetti i:nth-child(7){right:91%;background:var(--gold);animation-delay:.54s}.card.complete .confetti i:nth-child(8){right:46%;background:#8c5aa2;animation-delay:.82s}@keyframes confettiBurst{0%{opacity:0;transform:translateY(-8px) rotate(0)}15%{opacity:1}100%{opacity:0;transform:translateY(155px) rotate(280deg)}}.card.complete .spark{position:absolute;width:5px;height:5px;border-radius:50%;background:var(--gold);opacity:0;animation:sparkBurst 1.5s ease-out forwards}.card.complete .s1{right:17%;top:24%;animation-delay:1.1s}.card.complete .s2{left:18%;top:29%;background:var(--p);animation-delay:1.35s}.card.complete .s3{right:51%;top:18%;background:var(--g);animation-delay:1.55s}@keyframes sparkBurst{0%{opacity:0;transform:scale(.1);box-shadow:0 0 0 0 rgba(216,163,61,.2)}35%{opacity:1;transform:scale(1.2);box-shadow:0 0 0 12px rgba(216,163,61,.08)}100%{opacity:0;transform:scale(2);box-shadow:0 0 0 26px rgba(216,163,61,0)}}
 
-/* V13 — living orbit system */
 .orbit-stage .orbit{animation:orbitSpin 24s linear infinite}
 .orbit-stage .o2{animation-duration:19s;animation-direction:reverse}
 .orbit-stage .o3{animation-duration:14s}
@@ -169,14 +158,12 @@
 .active .orbit-stage .od2{animation-delay:-3s}
 .active .orbit-stage .od3{animation-delay:-2s}
 
-/* A subtle central breathing effect while the percentage counts up. */
 .command-core{animation:coreBreath 4s ease-in-out infinite}
 @keyframes coreBreath{
   0%,100%{box-shadow:0 25px 75px rgba(81,37,102,.22);transform:scale(1)}
   50%{box-shadow:0 30px 90px rgba(81,37,102,.34);transform:scale(1.018)}
 }
 
-/* 0% projects: warm "not started" state, then naturally returns to white as progress begins. */
 .card.not-started{
   background:linear-gradient(145deg,#fff8eb,#fff3dc);
   border-color:#e7c98d;
@@ -189,7 +176,6 @@
 .card.not-started .note{background:#b77a18;color:#fff}
 .card.not-started .info{background:#fff5e6}.card.not-started .note{background:#b77a18}.card.not-started .circle .bg{stroke:#eadfce}.card.not-started .circle .arc{stroke:var(--gold)}
 
-/* Completion celebration lives INSIDE the card. */
 .card.complete{overflow:hidden}
 .card.complete .celebrate{
   position:absolute;inset:0;z-index:15;pointer-events:none;overflow:hidden;
@@ -249,14 +235,11 @@
   100%{opacity:0;transform:scale(2);box-shadow:0 0 0 25px rgba(216,163,61,0)}
 }
 
-
-/* V16 — fix completed-card visibility and keep orbit dots on their exact rings */
 .card.complete{opacity:1}
 .active .card.complete{
   animation:in .55s cubic-bezier(.2,.75,.2,1) forwards,
             completeCardGlow 2.8s ease-in-out .55s 1 both;
 }
-/* V15 — stable, centered orbit system */
 .orbit-stage{height:500px;position:relative;display:block;overflow:visible}
 .orbit{position:absolute;left:50%;top:50%;border:1px solid rgba(81,37,102,.13);border-radius:50%;transform-origin:50% 50%;will-change:transform}
 .orbit.o1{width:450px;height:450px;margin:-225px 0 0 -225px;animation:orbit1 32s linear infinite}
@@ -270,8 +253,6 @@
   margin:-5.5px 0 0 -5.5px;
   width:11px;height:11px;border-radius:50%;
   z-index:6;will-change:transform;
-  /* Important: remove the old offset-path system so transform-based
-     orbiting uses the exact center of the orbit-stage. */
   offset-path:none;
   offset-distance:0;
   offset-rotate:0deg;
@@ -287,14 +268,12 @@
 .command-core.pulse{animation:coreBreath 4.5s ease-in-out infinite}
 @keyframes heroPulse{0%{opacity:.5;transform:scale(.82)}55%{opacity:1;transform:scale(1.07)}100%{opacity:1;transform:scale(1)}}
 .orbit-tag{z-index:10}
-/* Make the completion celebration unmistakable, but keep it inside the card. */
 .card.complete .celebrate{opacity:1;display:block}
 .card.complete .balloon{z-index:2}
 .card.complete .confetti{z-index:3}
 .card.complete .spark{z-index:4}
 .card.not-started{transition:background .8s,border-color .8s,box-shadow .8s}
 
-/* V17 — completed-card celebration: loop, roam, disappear, then restart */
 .card.complete .celebrate{
   position:absolute;
   inset:0;
@@ -304,8 +283,6 @@
   opacity:1;
 }
 
-/* Keep the actual card content above the celebration layer so balloons
-   never sit on top of the status/title/progress content. */
 .card.complete > :not(.celebrate){
   position:relative;
   z-index:2;
@@ -314,8 +291,6 @@
   z-index:4;
 }
 
-/* Balloons continuously enter, drift around, then leave the card.
-   The cycle repeats automatically. */
 .card.complete .balloon{
   top:8px;
   opacity:0;
@@ -463,8 +438,6 @@
   }
 }
 
-/* Confetti should also be a subtle recurring burst instead of a one-time
-   effect, while remaining behind the card content. */
 .card.complete .confetti{
   z-index:1;
 }
@@ -487,8 +460,6 @@
   70%,100%{opacity:0;transform:translateY(145px) rotate(300deg)}
 }
 
-/* Exact orbit system: every dot starts from the exact center of the
-   orbit-stage and travels on a fixed radius around that same center. */
 .orbit-stage{
   position:relative;
   overflow:visible;
@@ -528,8 +499,6 @@
   to{transform:rotate(360deg) translateX(105px)}
 }
 
-
-/* V18 — clean completed state + living border glow */
 .card.complete{
   position:relative;
   border-color:rgba(47,149,111,.38);
@@ -538,7 +507,6 @@
     0 0 0 1px rgba(47,149,111,.05);
 }
 
-/* Animated luminous frame */
 .card.complete:before{
   height:3px;
   background:linear-gradient(
@@ -585,7 +553,6 @@
   }
 }
 
-/* A very soft moving highlight along the completed frame */
 .card.complete{
   isolation:isolate;
 }
@@ -631,13 +598,10 @@
   100%{left:calc(100% + 100px);opacity:0}
 }
 
-/* Keep only the actual status badge as the completion indicator. */
 .card.complete .badge.green{
   box-shadow:0 0 0 1px rgba(47,149,111,.06);
 }
 
-
-/* V14 — live project pulse + sheet countdown + project mini overview */
 .live-projects{
   width:min(1180px,92vw);
   margin:18px auto 0;
@@ -673,15 +637,12 @@
 .sheet-status.ok{color:#62bd98}
 .sheet-status.err{color:#d8a33d}
 
-/* Give the dark command page enough vertical room for the project overview. */
 .live-command{height:calc(100% - 100px);display:grid;grid-template-columns:1fr 1fr;grid-template-rows:minmax(0,1fr) auto;gap:12px;align-content:center;}
 .live-update-panel,.count-panel{min-height:0}
 .live-projects{grid-column:1 / -1}
 @media(max-width:1200px){.live-project-grid{grid-template-columns:repeat(5,minmax(0,1fr))}.live-command{grid-template-rows:minmax(0,1fr) auto}.live-project{height:54px}}
 @media(max-width:900px){.live-project-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.live-command{grid-template-columns:1fr;overflow:auto}.live-projects{grid-column:auto}.live-project{height:58px}}
 
-
-/* V3 — equal command panels */
 .live-command{
   grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;
 }
@@ -692,8 +653,6 @@
   min-height:0;
 }
 
-
-/* V19 — fully fluid / zoom-safe responsive layout */
 html,body{
   width:100%;
   min-width:0;
@@ -855,8 +814,6 @@ html,body{
   .live-project-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 
-
-/* Responsive orbit-dot radii */
 .orbit-stage{--orbit-r1:min(225px,21vh,19vw);--orbit-r2:min(165px,15.5vh,14vw);--orbit-r3:min(105px,10vh,9vw)}
 .orbit-stage .od1{animation-name:responsiveOrbit1 !important}
 .orbit-stage .od2{animation-name:responsiveOrbit2 !important}
@@ -868,10 +825,6 @@ html,body{
   .orbit-stage{--orbit-r1:140px;--orbit-r2:102.5px;--orbit-r3:65px}
 }
 
-
-/* ==========================================================
-   FINAL RESPONSIVE FIX — KEEP HOME KPI STRIP INSIDE VIEWPORT
-   ========================================================== */
 html,body{
   width:100%;
   height:100%;
@@ -958,6 +911,7 @@ html,body{
   html,body{overflow:auto}
   #app{height:auto;min-height:100dvh}
   .screen{
+    flex:none;
     height:auto;
     min-height:100dvh;
     overflow:visible;
@@ -969,7 +923,6 @@ html,body{
     overflow:visible;
   }
 }
-
 </style>
 </head>
 <body>
@@ -1050,21 +1003,10 @@ html,body{
 <div class="dots" id="dots"></div></div>
 
 <script>
-/* ==========================================================
-   TAMKEEN COMMAND CENTER — Google Sheets Live Data Layer
-   Web App endpoint + Projects / Updates / Dashboard Settings
-   ========================================================== */
-/* ==========================================================
-   TAMKEEN COMMAND CENTER — PUBLISHED GOOGLE SHEETS DATA ONLY
-   Source: the exact published Google Sheets URL supplied by the user.
-   No previous/private Sheet ID, Apps Script endpoint, or fallback
-   dashboard data is used.
-   ========================================================== */
 const PUBLISHED_SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTQH7cPOEH3QVQ92CuRkVfMt2F0bhRQKl08MyTDUuGXd0xs7NHmcC0O38pR6CIcT81PH1cOOSmBwulF/pubhtml";
 const PUBLISHED_SHEET_BASE = PUBLISHED_SHEET_URL.replace(/\/pubhtml(?:\?.*)?$/i, "");
-const REFRESH_MS = 30 * 1000; // مزامنة تلقائية كل 30 ثانية
+const REFRESH_MS = 60 * 1000; // مزامنة تلقائية كل دقيقة (60 ثانية)
 
-/* لا توجد بيانات محلية قديمة: الصفحة تبدأ فارغة حتى تصل بيانات الشيت. */
 let projects=[];
 let updates=[];
 let countdownEnd=null;
@@ -1097,12 +1039,6 @@ function markLastSync(){
   document.querySelectorAll(".sync-label").forEach(el=>el.textContent=label);
 }
 
-/*
-  CORS Proxy Fallback:
-  1) Try the published Google Sheet directly.
-  2) If browser/file:// CORS blocks it, try public CORS relays.
-  All proxy requests still point ONLY to PUBLISHED_SHEET_URL / its derived GViz endpoint.
-*/
 const CORS_PROXIES=[
   "https://api.allorigins.win/raw?url=",
   "https://corsproxy.io/?url=",
@@ -1110,7 +1046,7 @@ const CORS_PROXIES=[
   "https://thingproxy.freeboard.io/fetch/",
   "https://cors.isomorphic-git.org/"
 ];
-const FETCH_TIMEOUT_MS=9000; // كل محاولة (مباشرة أو بروكسي) لا تتجاوز 9 ثوانٍ قبل الانتقال للتالي
+const FETCH_TIMEOUT_MS=9000;
 
 function fetchWithTimeout(url,ms){
   const controller=new AbortController();
@@ -1121,7 +1057,6 @@ function fetchWithTimeout(url,ms){
 async function fetchTextDirectOrProxy(url){
   let lastError=null;
 
-  /* 1) المحاولة المباشرة إلى الشيت المنشور (تعمل عند الاستضافة على GitHub Pages عبر HTTPS) */
   try{
     const res=await fetchWithTimeout(url,FETCH_TIMEOUT_MS);
     if(!res.ok)throw new Error(`HTTP ${res.status}`);
@@ -1131,8 +1066,6 @@ async function fetchTextDirectOrProxy(url){
     console.warn("Direct Google Sheets request failed; trying CORS proxies:",err);
   }
 
-  /* 2) ممر بديل تلقائي (CORS Proxy Fallback) — يجرب كل بروكسي بالترتيب حتى ينجح أحدها،
-     يفيد خصوصًا عند فتح الملف محليًا (file://) حيث يمنع المتصفح الطلب المباشر */
   for(const proxy of CORS_PROXIES){
     try{
       const proxyUrl=proxy+encodeURIComponent(url);
@@ -1199,7 +1132,6 @@ function normalizeUpdate(r){
 }
 
 function receiveSheetData(projectRows,updateRows,settingsRows,source){
-  /* Replace everything on every successful sync — never merge with old local data. */
   const incomingProjects=projectRows.filter(r=>norm(r["Project ID"])).map(mapProject);
   const incomingUpdates=updateRows.filter(r=>norm(r["Update ID"])||norm(r["Project Name"])||norm(r["Update Title"])).map(normalizeUpdate);
 
@@ -1212,7 +1144,6 @@ function receiveSheetData(projectRows,updateRows,settingsRows,source){
     if(k)settings[k]=r["Value"]??"";
   });
 
-  /* Countdown is also sheet-only. No old hard-coded date fallback. */
   countdownEnd=null;
   const endRaw=settings["Countdown End"]||settings["CountdownEnd"]||settings["countdownEnd"]||settings["End Date"];
   const d=parseDate(endRaw);
@@ -1227,7 +1158,6 @@ function receiveSheetData(projectRows,updateRows,settingsRows,source){
 async function syncFromGoogleSheets(){
   setSheetStatus(true,"SYNCING • GOOGLE SHEETS");
   try{
-    /* The ONLY source: the exact published spreadsheet supplied by the user. */
     const [projectResult,updateResult,settingsResult]=await Promise.all([
       fetchGviz("Projects"),
       fetchGviz("Updates"),
@@ -1238,7 +1168,6 @@ async function syncFromGoogleSheets(){
     receiveSheetData(projectResult.rows,updateResult.rows,settingsResult.rows,usedProxy?"cors-proxy":"direct");
   }catch(err){
     console.error("Google Sheets sync failed:",err);
-    /* Keep the last successful live data on transient failure, but NEVER restore old hard-coded data. */
     setSheetStatus(false,"SYNC ERROR • RETRYING");
   }
 }
@@ -1298,7 +1227,20 @@ function animateCards(screen){
  screen.querySelectorAll(".card").forEach((c,i)=>{const target=+c.dataset.pct,counter=c.querySelector(".counter"),arc=c.querySelector(".arc"),rail=c.querySelector(".progress-rail i"),numEl=c.querySelector(".num");setTimeout(()=>{if(numEl){const raw=parseInt(numEl.textContent,10)||0,stNum=performance.now();function nf(now){const q=Math.min((now-stNum)/700,1),e=1-Math.pow(1-q,3);numEl.textContent=String(Math.round(raw*e)).padStart(2,"0");if(q<1)requestAnimationFrame(nf)}requestAnimationFrame(nf)}const start=performance.now();function f(now){const q=Math.min((now-start)/2100,1),e=1-Math.pow(1-q,3);counter.textContent=Math.round(target*e)+"%";if(q<1)requestAnimationFrame(f)}requestAnimationFrame(f);setTimeout(()=>{arc.style.strokeDashoffset=408-(408*target/100);rail.style.width=target+"%"},120)},400+i*240)})
 }
 function showUpdate(){if(!updates.length)return;const u=updates[updateIndex++%updates.length];document.getElementById("uicon").textContent=u.icon;document.getElementById("utitle").textContent=u.title;document.getElementById("utext").textContent=u.text;document.getElementById("uold").textContent=u.old;document.getElementById("unew").textContent=u.newv;document.getElementById("utime").textContent=u.time;const bar=document.querySelector(".update-line i");bar.style.animation="none";void bar.offsetWidth;bar.style.animation="news 9s linear forwards"}
-function show(i){current=(i+screens.length)%screens.length;screens.forEach((s,x)=>s.classList.toggle("active",x===current));dots.querySelectorAll(".dot").forEach((d,x)=>d.classList.toggle("active",x===current));if(current===0)animateHomeNumbers();if(current>=1&&current<=4){screens[current].querySelectorAll(".card.complete").forEach(c=>{c.style.opacity="1";c.style.animation="";void c.offsetWidth;const z=c.querySelector(".celebrate");if(z){z.style.display="none";void z.offsetWidth;z.style.display="block";}});animateCards(screens[current]);}if(current===5){showUpdate();renderLiveProjects()}}
+
+function show(i){
+  current=(i+screens.length)%screens.length;
+  screens.forEach((s,x)=>s.classList.toggle("active",x===current));
+  dots.querySelectorAll(".dot").forEach((d,x)=>d.classList.toggle("active",x===current));
+  
+  // تنفيذ المزامنة المباشرة فور فتح الشاشة أو الانتقال إليها
+  syncFromGoogleSheets();
+
+  if(current===0)animateHomeNumbers();
+  if(current>=1&&current<=4){screens[current].querySelectorAll(".card.complete").forEach(c=>{c.style.opacity="1";c.style.animation="";void c.offsetWidth;const z=c.querySelector(".celebrate");if(z){z.style.display="none";void z.offsetWidth;z.style.display="block";}});animateCards(screens[current]);}
+  if(current===5){showUpdate();renderLiveProjects()}
+}
+
 function scheduleNext(){clearTimeout(loopTimer);loopTimer=setTimeout(()=>{show(current+1);scheduleNext()},durations[current]||25000)}
 function updateCountdown(){
   if(!countdownEnd){
@@ -1316,9 +1258,9 @@ function initDots(){screens.forEach((_,i)=>{const d=document.createElement("span
 initDots();
 renderAll();
 updateCountdown();
-show(0);scheduleNext();
-syncFromGoogleSheets();
-refreshTimer=setInterval(syncFromGoogleSheets,REFRESH_MS);
+show(0);
+scheduleNext();
+refreshTimer=setInterval(syncFromGoogleSheets, REFRESH_MS);
 countdownTimer=setInterval(updateCountdown,1000);
 document.addEventListener("keydown",e=>{if(e.key==="ArrowRight"){show(current+1);scheduleNext()}if(e.key==="ArrowLeft"){show(current-1);scheduleNext()}});
 </script>
