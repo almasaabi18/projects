@@ -1054,31 +1054,19 @@ html,body{
    TAMKEEN COMMAND CENTER — Google Sheets Live Data Layer
    Web App endpoint + Projects / Updates / Dashboard Settings
    ========================================================== */
-const SHEET_ID = "1EX00BCwndJOXUKlimpiq8kGzVCZi2MIdJx4PCO44p7o";
-const SHEETS_API = "https://script.google.com/macros/s/AKfycbx9RtCQaOeqMqF422le-LlqbYQ-tF53NVWDmlfZhKjGXlcGRwdf3S6iiD6cw6dbLXFx5Q/exec"; // LIVE DATA SOURCE
+/* ==========================================================
+   TAMKEEN COMMAND CENTER — PUBLISHED GOOGLE SHEETS DATA ONLY
+   Source: the exact published Google Sheets URL supplied by the user.
+   No previous/private Sheet ID, Apps Script endpoint, or fallback
+   dashboard data is used.
+   ========================================================== */
+const PUBLISHED_SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTQH7cPOEH3QVQ92CuRkVfMt2F0bhRQKl08MyTDUuGXd0xs7NHmcC0O38pR6CIcT81PH1cOOSmBwulF/pubhtml";
+const PUBLISHED_SHEET_BASE = PUBLISHED_SHEET_URL.replace(/\/pubhtml(?:\?.*)?$/i, "");
 const REFRESH_MS = 4 * 60 * 1000; // مزامنة تلقائية كل 4 دقائق
 
-const fallbackProjects=[
-{id:"01",name:"منصة CRM للضيوف",team:"Marketing × IT",status:"قيد التنفيذ",pct:78,delivery:"30 أغسطس",start:"18 أغسطس",priority:"عالي",note:"ربط بيانات الضيف مع فريق الحجوزات",stages:["مكتمل","مكتمل","جاري التنفيذ","متبقي","متبقي"]},
-{id:"02",name:"محرك الحجز المباشر",team:"Reservations × IT",status:"قيد التنفيذ",pct:64,delivery:"28 أغسطس",start:"16 أغسطس",priority:"عالي",note:"اعتماد رحلة الحجز الجديدة",stages:["مكتمل","جاري التنفيذ","متبقي","متبقي","متبقي"]},
-{id:"03",name:"منصة تجربة الضيف TDH",team:"IT",status:"مكتمل",pct:100,delivery:"18 أغسطس",start:"08 أغسطس",priority:"متوسط",note:"تم الإطلاق التجريبي بنجاح",stages:["مكتمل","مكتمل","مكتمل","مكتمل","مكتمل"]},
-{id:"04",name:"لوحة مؤشرات الفنادق",team:"Marketing",status:"قيد التنفيذ",pct:87,delivery:"25 أغسطس",start:"12 أغسطس",priority:"متوسط",note:"مراجعة آخر مؤشرات الأداء",stages:["مكتمل","مكتمل","مكتمل","جاري التنفيذ","متبقي"]},
-{id:"05",name:"بوابة الشركاء CRM",team:"Sales × IT",status:"يحتاج متابعة",pct:41,delivery:"08 سبتمبر",start:"20 أغسطس",priority:"عالي",note:"بانتظار اعتماد نموذج الصلاحيات",stages:["مكتمل","جاري التنفيذ","متبقي","متبقي","متبقي"]},
-{id:"06",name:"أتمتة التقارير اليومية",team:"Marketing × IT",status:"قيد التنفيذ",pct:73,delivery:"05 سبتمبر",start:"15 أغسطس",priority:"منخفض",note:"تم إنهاء ربط مصدرين من أصل ثلاثة",stages:["مكتمل","مكتمل","جاري التنفيذ","متبقي","متبقي"]},
-{id:"07",name:"بوابة الخدمات الداخلية",team:"IT",status:"قيد التنفيذ",pct:58,delivery:"12 سبتمبر",start:"19 أغسطس",priority:"متوسط",note:"تجهيز صلاحيات الإدارات",stages:["مكتمل","مكتمل","جاري التنفيذ","متبقي","متبقي"]},
-{id:"08",name:"نظام إدارة المنتجات",team:"Marketing × IT",status:"قيد التنفيذ",pct:52,delivery:"20 سبتمبر",start:"22 أغسطس",priority:"منخفض",note:"جمع المتطلبات من الفنادق",stages:["جاري التنفيذ","متبقي","متبقي","متبقي","متبقي"]},
-{id:"09",name:"نظام تقييم تجربة الضيف",team:"Guest Experience",status:"قيد التنفيذ",pct:69,delivery:"01 سبتمبر",start:"17 أغسطس",priority:"متوسط",note:"اختبار الاستبيان بعد المغادرة",stages:["مكتمل","مكتمل","جاري التنفيذ","متبقي","متبقي"]},
-{id:"10",name:"مركز المعرفة الداخلي",team:"Marketing",status:"مكتمل",pct:100,delivery:"15 أغسطس",start:"05 أغسطس",priority:"منخفض",note:"تم نشر المحتوى الأساسي",stages:["مكتمل","مكتمل","مكتمل","مكتمل","مكتمل"]},
-{id:"11",name:"أتمتة طلبات التصميم",team:"Marketing × IT",status:"قيد التنفيذ",pct:82,delivery:"22 أغسطس",start:"10 أغسطس",priority:"عالي",note:"اختبار مسار الموافقات",stages:["مكتمل","مكتمل","مكتمل","جاري التنفيذ","متبقي"]},
-{id:"12",name:"نظام إدارة المهام",team:"All Departments",status:"قيد التنفيذ",pct:66,delivery:"10 سبتمبر",start:"21 أغسطس",priority:"متوسط",note:"ربط المهام بالتقارير التنفيذية",stages:["مكتمل","مكتمل","جاري التنفيذ","متبقي","متبقي"]},
-{id:"13",name:"تطبيق الخدمات الرقمية",team:"IT × Guest Experience",status:"لم يبدأ",pct:0,delivery:"30 سبتمبر",start:"24 أغسطس",priority:"عالي",note:"جاهز لبدء التنفيذ بعد اعتماد المتطلبات",stages:["متبقي","متبقي","متبقي","متبقي","متبقي"]}
-];
-let projects=[...fallbackProjects];
-let updates=[
-{icon:"↗",title:"منصة CRM للضيوف",text:"ارتفعت نسبة الإنجاز من 72% إلى 78%",old:"72%",newv:"78%",time:"منذ ساعتين"},
-{icon:"✓",title:"منصة تجربة الضيف TDH",text:"تم اعتماد الإطلاق التجريبي للمشروع",old:"الاختبار",newv:"الإطلاق",time:"منذ 4 ساعات"},
-{icon:"→",title:"بوابة الشركاء CRM",text:"بانتظار اعتماد نموذج الصلاحيات",old:"41%",newv:"متابعة",time:"اليوم"}
-];
+/* لا توجد بيانات محلية قديمة: الصفحة تبدأ فارغة حتى تصل بيانات الشيت. */
+let projects=[];
+let updates=[];
 let countdownEnd=null;
 const stageNames=["Stage 1","Stage 2","Stage 3","Stage 4","Stage 5"];
 const screens=[...document.querySelectorAll(".screen")],dots=document.getElementById("dots");
@@ -1095,198 +1083,150 @@ function parseDate(v){
   const m=String(v).match(/(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})/);
   return m?new Date(+m[3],+m[2]-1,+m[1],23,59,59):null;
 }
-function setSheetStatus(ok,msg){const el=document.getElementById("sheetStatus");if(!el)return;el.textContent=msg|| (ok?"LIVE • GOOGLE SHEETS":"OFFLINE • FALLBACK DATA");el.className="sheet-status "+(ok?"ok":"err");}
+function setSheetStatus(ok,msg){
+  const el=document.getElementById("sheetStatus");
+  if(!el)return;
+  el.textContent=msg||(ok?"LIVE • GOOGLE SHEETS":"SYNC ERROR • GOOGLE SHEETS");
+  el.className="sheet-status "+(ok?"ok":"err");
+}
 function formatSyncDate(date=new Date()){
-  return new Intl.DateTimeFormat("ar-SA-u-ca-gregory",{day:"2-digit",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit"}).format(date);
+  return new Intl.DateTimeFormat("ar-SA-u-ca-gregory",{day:"2-digit",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit",second:"2-digit"}).format(date);
 }
 function markLastSync(){
   const label=`آخر مزامنة: ${formatSyncDate()}`;
   document.querySelectorAll(".sync-label").forEach(el=>el.textContent=label);
 }
 
-const CORS_PROXIES = [
+/*
+  CORS Proxy Fallback:
+  1) Try the published Google Sheet directly.
+  2) If browser/file:// CORS blocks it, try public CORS relays.
+  All proxy requests still point ONLY to PUBLISHED_SHEET_URL / its derived GViz endpoint.
+*/
+const CORS_PROXIES=[
   "https://api.allorigins.win/raw?url=",
-  "https://corsproxy.io/?url="
+  "https://corsproxy.io/?url=",
+  "https://cors.isomorphic-git.org/"
 ];
 
-async function fetchJsonDirectOrProxy(url, options={}){
-  const requestOptions={cache:"no-store",redirect:"follow",...options};
+async function fetchTextDirectOrProxy(url){
   let directError=null;
-
-  /* 1) Try the real source first. */
   try{
-    const res=await fetch(url,requestOptions);
+    const res=await fetch(url,{cache:"no-store",redirect:"follow"});
     if(!res.ok)throw new Error(`HTTP ${res.status}`);
-    const payload=await res.json();
-    return {payload,source:"direct"};
+    return {text:await res.text(),source:"direct"};
   }catch(err){
     directError=err;
-    console.warn("Direct request failed; trying CORS proxy fallback:",err);
+    console.warn("Direct Google Sheets request failed; trying CORS proxies:",err);
   }
 
-  /* 2) If GitHub Pages / file:// is blocked by CORS, try public CORS relays. */
   for(const proxy of CORS_PROXIES){
     try{
       const proxyUrl=proxy+encodeURIComponent(url);
       const res=await fetch(proxyUrl,{cache:"no-store",redirect:"follow"});
       if(!res.ok)throw new Error(`Proxy HTTP ${res.status}`);
-      const text=await res.text();
-      let payload;
-      try{
-        payload=JSON.parse(text);
-      }catch{
-        throw new Error("Proxy returned non-JSON data");
-      }
-      return {payload,source:"cors-proxy"};
+      return {text:await res.text(),source:"cors-proxy"};
     }catch(proxyError){
       console.warn("CORS proxy failed:",proxy,proxyError);
     }
   }
-
-  throw directError||new Error("All data sources failed");
+  throw directError||new Error("All Google Sheets data routes failed");
 }
 
-async function fetchTextDirectOrProxy(url){
-  try{
-    const res=await fetch(url,{cache:"no-store",redirect:"follow"});
-    if(!res.ok)throw new Error(`HTTP ${res.status}`);
-    return await res.text();
-  }catch(directError){
-    for(const proxy of CORS_PROXIES){
-      try{
-        const res=await fetch(proxy+encodeURIComponent(url),{cache:"no-store",redirect:"follow"});
-        if(!res.ok)throw new Error(`Proxy HTTP ${res.status}`);
-        return await res.text();
-      }catch(proxyError){
-        console.warn("CORS text proxy failed:",proxy,proxyError);
-      }
-    }
-    throw directError;
-  }
-}
-
-function mapProject(r){
-  /* Supports both the raw sheet rows and the already-mapped Apps Script response. */
-  if(r && (r["Project ID"]!==undefined || r["Project Name"]!==undefined)){
-    const stages=[1,2,3,4,5].map(i=>norm(r["Stage "+i]));
-    const pct=toNum(r["Progress %"]);
-    return {
-      id:norm(r["Project ID"])||"--", name:norm(r["Project Name"])||"مشروع بدون اسم", team:norm(r["Team / Department"]),
-      status:norm(r["Status"])||(pct===0?"لم يبدأ":pct===100?"مكتمل":"قيد التنفيذ"), pct,
-      delivery:norm(r["Delivery Date"]), start:norm(r["Start Date"]), priority:norm(r["Priority"]),
-      note:norm(r["Update Text"])||norm(r["Current Stage"])||"—", current:norm(r["Current Stage"]), stages
-    };
-  }
-  const pct=toNum(r?.pct);
-  const mappedStages=Array.isArray(r?.stages)?r.stages.map(x=>norm(x?.state||x?.status||x)):[];
-  while(mappedStages.length<5)mappedStages.push("متبقي");
-  return {
-    id:norm(r?.n||r?.id)||"--", name:norm(r?.name)||"مشروع بدون اسم", team:norm(r?.team),
-    status:norm(r?.status)||(pct===0?"لم يبدأ":pct===100?"مكتمل":"قيد التنفيذ"), pct,
-    delivery:norm(r?.date||r?.delivery), start:norm(r?.start||r?.startDate), priority:norm(r?.priority),
-    note:norm(r?.note||r?.updateText||r?.current||r?.currentStage)||"—", current:norm(r?.current||r?.currentStage), stages:mappedStages.slice(0,5)
-  };
-}
-function normalizeUpdate(r){
-  if(r && (r.title!==undefined || r.text!==undefined || r.newv!==undefined)) return {icon:norm(r.icon)||"↗",title:norm(r.title)||"تحديث",text:norm(r.text)||"",old:norm(r.old),newv:norm(r.newv),time:norm(r.time)||"اليوم"};
-  return {icon:norm(r["Update Type"])==="Completed"?"✓":"↗",title:norm(r["Project Name"])||norm(r["Update Title"])||"تحديث",text:norm(r["Update Text"])||norm(r["Update Title"])||"",old:norm(r["Old Value"]),newv:norm(r["New Value"]),time:norm(r["Update Date"])||"اليوم"};
-}
-function receiveData(data){
-  if(!data||typeof data!=="object")throw new Error("Invalid JSON");
-  if(Array.isArray(data.projects)&&data.projects.length){
-    const incoming=data.projects.map(mapProject);
-    projects=incoming.map(p=>{
-      const old=fallbackProjects.find(x=>String(x.id).padStart(2,"0")===String(p.id).padStart(2,"0"));
-      return {...old,...p,start:p.start||old?.start||"",priority:p.priority||old?.priority||""};
-    });
-  }
-  if(Array.isArray(data.updates)&&data.updates.length){updates=data.updates.map(normalizeUpdate);}
-  const settings=data.settings||{};
-  const endRaw=settings["Countdown End"]||settings["CountdownEnd"]||settings["countdownEnd"]||settings["End Date"];
-  const d=parseDate(endRaw);
-  if(d)countdownEnd=d.getTime();
-  renderAll();
-  updateCountdown();
-  markLastSync();
-  setSheetStatus(true,"LIVE • GOOGLE SHEETS");
-}
 function parseGViz(text){
-  const m=text.match(/google\.visualization\.Query\.setResponse\((.*)\);?\s*$/s);
-  if(!m)throw new Error("Invalid Google Sheets response");
+  const raw=String(text??"").trim();
+  const m=raw.match(/google\.visualization\.Query\.setResponse\((.*)\);?\s*$/s);
+  if(!m)throw new Error("Invalid Google Sheets GViz response");
   return JSON.parse(m[1]);
 }
 function gvizRows(payload){
   const cols=(payload.table?.cols||[]).map(c=>norm(c.label));
-  return (payload.table?.rows||[]).map(row=>{const o={};(row.c||[]).forEach((cell,i)=>o[cols[i]||String(i)]=cell?.v??"");return o;});
+  return (payload.table?.rows||[]).map(row=>{
+    const o={};
+    (row.c||[]).forEach((cell,i)=>o[cols[i]||String(i)]=cell?.v??"");
+    return o;
+  });
 }
-async function fetchGviz(sheet){
-  const url=`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(sheet)}&ts=${Date.now()}`;
-  return gvizRows(await fetchTextDirectOrProxy(url));
-}
-async function syncFromGoogleSheets(){
-  /*
-    PRIMARY: deployed Apps Script Web App.
-    This is the reliable path for localhost because the Web App returns JSON
-    from Projects / Updates / Dashboard Settings and can be refreshed without
-    changing the HTML.
-    FALLBACK: published Google Sheets GViz endpoints.
-  */
-  try{
-    const result=await fetchJsonDirectOrProxy(SHEETS_API+"?ts="+Date.now(),{
-      headers:{Accept:"application/json"}
-    });
-    const payload=result.payload;
-    if(!payload || typeof payload!=="object")throw new Error("Invalid Apps Script JSON");
-    receiveData(payload);
-    markLastSync();
-    if(result.source==="cors-proxy"){
-      setSheetStatus(true,"LIVE • CORS PROXY");
-    }
-    return;
-  }catch(primaryErr){
-    console.warn("Apps Script sync failed, trying Google Sheets GViz with CORS fallback:",primaryErr);
-  }
 
+async function fetchGviz(sheet){
+  const url=`${PUBLISHED_SHEET_BASE}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(sheet)}&ts=${Date.now()}`;
+  const result=await fetchTextDirectOrProxy(url);
+  return {rows:gvizRows(parseGViz(result.text)),source:result.source};
+}
+
+function mapProject(r){
+  const stages=[1,2,3,4,5].map(i=>norm(r["Stage "+i]));
+  const pct=toNum(r["Progress %"]);
+  return {
+    id:norm(r["Project ID"])||"--",
+    name:norm(r["Project Name"])||"مشروع بدون اسم",
+    team:norm(r["Team / Department"]),
+    status:norm(r["Status"])||(pct===0?"لم يبدأ":pct===100?"مكتمل":"قيد التنفيذ"),
+    pct,
+    delivery:norm(r["Delivery Date"]),
+    start:norm(r["Start Date"]),
+    priority:norm(r["Priority"]),
+    note:norm(r["Update Text"])||norm(r["Current Stage"])||"—",
+    current:norm(r["Current Stage"]),
+    stages
+  };
+}
+function normalizeUpdate(r){
+  return {
+    icon:norm(r["Update Type"])==="Completed"?"✓":"↗",
+    title:norm(r["Project Name"])||norm(r["Update Title"])||"تحديث",
+    text:norm(r["Update Text"])||norm(r["Update Title"])||"",
+    old:norm(r["Old Value"]),
+    newv:norm(r["New Value"]),
+    time:norm(r["Update Date"])||"اليوم"
+  };
+}
+
+function receiveSheetData(projectRows,updateRows,settingsRows,source){
+  /* Replace everything on every successful sync — never merge with old local data. */
+  const incomingProjects=projectRows.filter(r=>norm(r["Project ID"])).map(mapProject);
+  const incomingUpdates=updateRows.filter(r=>norm(r["Update ID"])||norm(r["Project Name"])||norm(r["Update Title"])).map(normalizeUpdate);
+
+  projects=incomingProjects;
+  updates=incomingUpdates;
+
+  const settings={};
+  settingsRows.forEach(r=>{
+    const k=norm(r["Setting"]);
+    if(k)settings[k]=r["Value"]??"";
+  });
+
+  /* Countdown is also sheet-only. No old hard-coded date fallback. */
+  countdownEnd=null;
+  const endRaw=settings["Countdown End"]||settings["CountdownEnd"]||settings["countdownEnd"]||settings["End Date"];
+  const d=parseDate(endRaw);
+  if(d)countdownEnd=d.getTime();
+
+  renderAll();
+  updateCountdown();
+  markLastSync();
+  setSheetStatus(true,source==="cors-proxy"?"LIVE • CORS PROXY":"LIVE • GOOGLE SHEETS");
+}
+
+async function syncFromGoogleSheets(){
+  setSheetStatus(true,"SYNCING • GOOGLE SHEETS");
   try{
-    const [projectRows,updateRows,settingsRows]=await Promise.all([
+    /* The ONLY source: the exact published spreadsheet supplied by the user. */
+    const [projectResult,updateResult,settingsResult]=await Promise.all([
       fetchGviz("Projects"),
       fetchGviz("Updates"),
       fetchGviz("Dashboard Settings")
     ]);
 
-    if(projectRows.length){
-      const incoming=projectRows.filter(r=>norm(r["Project ID"])).map(mapProject);
-      if(incoming.length){
-        projects=incoming.map(p=>{
-          const old=fallbackProjects.find(x=>String(x.id).padStart(2,"0")===String(p.id).padStart(2,"0"));
-          return {...old,...p,start:p.start||old?.start||"",priority:p.priority||old?.priority||""};
-        });
-      }
-    }
-
-    if(updateRows.length){
-      const u=updateRows.filter(r=>norm(r["Update ID"])).map(normalizeUpdate);
-      if(u.length)updates=u;
-    }
-
-    const settings={};
-    settingsRows.forEach(r=>{
-      const k=norm(r["Setting"]);
-      if(k)settings[k]=r["Value"]??"";
-    });
-
-    const end=parseDate(settings["Countdown End"]||settings["CountdownEnd"]||settings["End Date"]);
-    if(end)countdownEnd=end.getTime();
-
-    renderAll();
-    updateCountdown();
-    markLastSync();
-    setSheetStatus(true,"LIVE • GOOGLE SHEETS");
+    const usedProxy=[projectResult,updateResult,settingsResult].some(x=>x.source==="cors-proxy");
+    receiveSheetData(projectResult.rows,updateResult.rows,settingsResult.rows,usedProxy?"cors-proxy":"direct");
   }catch(err){
-    console.warn("Google Sheets sync failed:",err);
-    setSheetStatus(false,"OFFLINE • FALLBACK DATA");
+    console.error("Google Sheets sync failed:",err);
+    /* Keep the last successful live data on transient failure, but NEVER restore old hard-coded data. */
+    setSheetStatus(false,"SYNC ERROR • RETRYING");
   }
 }
+
 function animateHomeNumbers(){
   document.querySelectorAll(".home-count").forEach((el,i)=>{
     const target=Number(el.dataset.target||0),suffix=el.dataset.suffix||"",pad=Number(el.dataset.pad||0),start=performance.now(),delay=450+i*130;
@@ -1344,19 +1284,23 @@ function animateCards(screen){
 function showUpdate(){if(!updates.length)return;const u=updates[updateIndex++%updates.length];document.getElementById("uicon").textContent=u.icon;document.getElementById("utitle").textContent=u.title;document.getElementById("utext").textContent=u.text;document.getElementById("uold").textContent=u.old;document.getElementById("unew").textContent=u.newv;document.getElementById("utime").textContent=u.time;const bar=document.querySelector(".update-line i");bar.style.animation="none";void bar.offsetWidth;bar.style.animation="news 9s linear forwards"}
 function show(i){current=(i+screens.length)%screens.length;screens.forEach((s,x)=>s.classList.toggle("active",x===current));dots.querySelectorAll(".dot").forEach((d,x)=>d.classList.toggle("active",x===current));if(current===0)animateHomeNumbers();if(current>=1&&current<=4){screens[current].querySelectorAll(".card.complete").forEach(c=>{c.style.opacity="1";c.style.animation="";void c.offsetWidth;const z=c.querySelector(".celebrate");if(z){z.style.display="none";void z.offsetWidth;z.style.display="block";}});animateCards(screens[current]);}if(current===5){showUpdate();renderLiveProjects()}}
 function scheduleNext(){clearTimeout(loopTimer);loopTimer=setTimeout(()=>{show(current+1);scheduleNext()},durations[current]||25000)}
-function countdownEndFromSettings(){
-  /* If the sheet returns a date, use it. Otherwise keep a safe fallback. */
-  if(countdownEnd)return;
-  countdownEnd=new Date("2026-08-22T23:59:59+03:00").getTime();
+function updateCountdown(){
+  if(!countdownEnd){
+    ["d","h","m","sec"].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent="00";});
+    return;
+  }
+  let x=Math.max(0,countdownEnd-Date.now());
+  document.getElementById("d").textContent=String(Math.floor(x/86400000)).padStart(2,"0");
+  document.getElementById("h").textContent=String(Math.floor(x%86400000/3600000)).padStart(2,"0");
+  document.getElementById("m").textContent=String(Math.floor(x%3600000/60000)).padStart(2,"0");
+  document.getElementById("sec").textContent=String(Math.floor(x%60000/1000)).padStart(2,"0");
 }
-function updateCountdown(){countdownEndFromSettings();let x=Math.max(0,countdownEnd-Date.now());document.getElementById("d").textContent=String(Math.floor(x/86400000)).padStart(2,"0");document.getElementById("h").textContent=String(Math.floor(x%86400000/3600000)).padStart(2,"0");document.getElementById("m").textContent=String(Math.floor(x%3600000/60000)).padStart(2,"0");document.getElementById("sec").textContent=String(Math.floor(x%60000/1000)).padStart(2,"0")}
 function initDots(){screens.forEach((_,i)=>{const d=document.createElement("span");d.className="dot"+(i===0?" active":"");dots.appendChild(d)})}
 
 initDots();
 renderAll();
 updateCountdown();
 show(0);scheduleNext();
-markLastSync();
 syncFromGoogleSheets();
 refreshTimer=setInterval(syncFromGoogleSheets,REFRESH_MS);
 countdownTimer=setInterval(updateCountdown,1000);
