@@ -692,6 +692,284 @@
   min-height:0;
 }
 
+
+/* V19 — fully fluid / zoom-safe responsive layout */
+html,body{
+  width:100%;
+  min-width:0;
+  min-height:100%;
+}
+#app{
+  width:100%;
+  min-width:0;
+  min-height:100dvh;
+  height:100dvh;
+}
+.screen{
+  padding:clamp(14px,2.2vw,28px) clamp(16px,3.1vw,44px);
+  min-width:0;
+  min-height:100dvh;
+}
+.top,.brand,.live,.command-home,.home-strip,.live-command,.live-projects,
+.project-grid,.card-main,.card-foot,.status-row,.page-head{
+  min-width:0;
+}
+.brand h1{font-size:clamp(15px,1.25vw,20px)}
+.live{font-size:clamp(8px,.62vw,9px);white-space:nowrap}
+.sync-live{gap:6px}
+.sync-label{display:inline-block;max-width:38vw;overflow:hidden;text-overflow:ellipsis}
+.command-home{
+  height:calc(100dvh - clamp(52px,6vw,70px));
+  grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);
+}
+.home-intro{padding-right:clamp(0px,2vw,28px)}
+.home-intro h2{
+  font-size:clamp(36px,5.2vw,86px);
+  letter-spacing:clamp(-2px,-.22vw,-3px);
+  gap:clamp(10px,1.3vw,20px);
+}
+.home-intro p{font-size:clamp(10px,.82vw,13px);max-width:min(560px,46vw)}
+.orbit-stage{
+  height:min(500px,58vh);
+  min-height:300px;
+}
+.orbit-stage .orbit.o1{width:min(450px,42vh,38vw);height:min(450px,42vh,38vw);margin:calc(min(450px,42vh,38vw)/-2) 0 0 calc(min(450px,42vh,38vw)/-2)}
+.orbit-stage .orbit.o2{width:min(330px,31vh,28vw);height:min(330px,31vh,28vw);margin:calc(min(330px,31vh,28vw)/-2) 0 0 calc(min(330px,31vh,28vw)/-2)}
+.orbit-stage .orbit.o3{width:min(210px,20vh,18vw);height:min(210px,20vh,18vw);margin:calc(min(210px,20vh,18vw)/-2) 0 0 calc(min(210px,20vh,18vw)/-2)}
+.orbit-stage .od1{transform-origin:5.5px 5.5px}
+.orbit-stage .od2{transform-origin:5.5px 5.5px}
+.orbit-stage .od3{transform-origin:5.5px 5.5px}
+.command-core{
+  width:min(185px,18vh,17vw);
+  height:min(185px,18vh,17vw);
+  margin:calc(min(185px,18vh,17vw)/-2) 0 0 calc(min(185px,18vh,17vw)/-2);
+}
+.core-number{font-size:clamp(34px,4vw,57px)}
+.home-kpi,.home-next{padding:clamp(7px,.75vw,10px) clamp(9px,1vw,13px)}
+.home-kpi b{font-size:clamp(20px,2vw,27px)}
+.home-strip{gap:clamp(6px,.7vw,9px)}
+
+.page-head{margin:clamp(10px,1.5vw,24px) 0 clamp(8px,1vw,14px)}
+.page-head h2{font-size:clamp(21px,2vw,27px)}
+.project-grid{
+  height:calc(100dvh - 145px);
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-rows:repeat(2,minmax(0,1fr));
+  gap:clamp(8px,1.1vw,16px);
+}
+.card{
+  min-width:0;
+  padding:clamp(12px,1.35vw,19px) clamp(13px,1.45vw,20px) clamp(10px,1.1vw,16px);
+  border-radius:clamp(15px,1.6vw,22px);
+}
+.card-title h3{font-size:clamp(14px,1.3vw,20px)}
+.team{font-size:clamp(7px,.65vw,10px)}
+.card-main{
+  grid-template-columns:clamp(90px,9vw,128px) minmax(0,1fr);
+  gap:clamp(8px,1vw,14px);
+}
+.circle{width:clamp(88px,8.5vw,118px);height:clamp(88px,8.5vw,118px)}
+.counter{font-size:clamp(23px,2.5vw,29px)}
+.stage-head b{font-size:clamp(9px,.8vw,11px)}
+.stage-head span,.stage-name{font-size:clamp(7px,.65vw,9px)}
+.info{padding:clamp(5px,.6vw,7px) clamp(7px,.8vw,10px)}
+.note{font-size:clamp(8px,.72vw,10px);padding:clamp(7px,.8vw,10px) clamp(9px,1vw,12px)}
+
+.live-command{
+  width:min(1250px,100%);
+  height:calc(100dvh - 100px);
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+}
+.live-update-panel,.count-panel{
+  height:clamp(300px,55vh,420px);
+  padding:clamp(22px,3vw,42px) clamp(22px,3.2vw,46px);
+}
+.count-panel h2{font-size:clamp(21px,2.3vw,27px)}
+.count-panel .tbox{width:clamp(58px,6vw,78px);padding:clamp(8px,1vw,12px) 2px}
+.count-panel .tnum{font-size:clamp(28px,3.3vw,39px)}
+.live-projects{width:min(1180px,100%)}
+.live-project-grid{grid-template-columns:repeat(7,minmax(0,1fr));gap:clamp(5px,.55vw,7px)}
+.live-project{height:clamp(48px,6vh,58px);padding:clamp(5px,.6vw,7px) clamp(6px,.75vw,9px)}
+
+@media (max-height:820px) and (min-width:901px){
+  .screen{padding-top:16px;padding-bottom:16px}
+  .command-home{height:calc(100dvh - 48px)}
+  .orbit-stage{height:54vh;min-height:270px}
+  .home-strip{margin-top:-4px}
+  .project-grid{height:calc(100dvh - 118px)}
+  .live-command{height:calc(100dvh - 76px)}
+  .live-update-panel,.count-panel{height:min(370px,50vh)}
+  .live-project{height:50px}
+}
+
+@media (max-width:1100px){
+  .home-intro h2{font-size:clamp(34px,5.5vw,62px)}
+  .home-strip{grid-template-columns:repeat(4,minmax(0,1fr));}
+  .home-next{grid-column:1/-1}
+  .live-project-grid{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .sync-label{max-width:34vw}
+}
+
+@media (max-width:900px){
+  html,body{overflow:auto}
+  #app{height:auto;min-height:100dvh}
+  .screen{position:relative;inset:auto;height:auto;min-height:100dvh;overflow:visible}
+  .command-home{height:auto;min-height:calc(100dvh - 55px);grid-template-columns:1fr;grid-template-rows:auto auto auto;overflow:visible}
+  .home-intro{padding:20px 0 0;text-align:center}
+  .home-intro p{margin-inline:auto;max-width:680px}
+  .gold-rule{margin:20px auto}
+  .orbit-stage{height:min(430px,52vh);min-height:300px}
+  .home-strip{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:8px}
+  .home-next{grid-column:1/-1}
+  .project-grid{height:auto;grid-template-columns:1fr;grid-template-rows:none}
+  .card{min-height:360px}
+  .live-command{height:auto;grid-template-columns:1fr;overflow:visible}
+  .live-update-panel,.count-panel{height:auto;min-height:340px}
+  .live-projects{grid-column:auto}
+  .live-project-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .sync-label{max-width:52vw}
+}
+
+@media (max-width:600px){
+  .screen{padding:14px}
+  .top{align-items:center}
+  .brand h1{font-size:15px}
+  .brand p{font-size:7px}
+  .live{font-size:7px}
+  .sync-label{max-width:48vw}
+  .home-intro h2{font-size:clamp(30px,9vw,46px);letter-spacing:-1.5px}
+  .home-intro p{font-size:11px;line-height:1.8}
+  .orbit-stage{height:330px;min-height:280px}
+  .orbit-stage .orbit.o1{width:280px;height:280px;margin:-140px 0 0 -140px}
+  .orbit-stage .orbit.o2{width:205px;height:205px;margin:-102.5px 0 0 -102.5px}
+  .orbit-stage .orbit.o3{width:130px;height:130px;margin:-65px 0 0 -65px}
+  .command-core{width:122px;height:122px;margin:-61px 0 0 -61px}
+  .core-number{font-size:34px}
+  .core-number span{font-size:18px}
+  .home-strip{grid-template-columns:1fr 1fr}
+  .home-kpi b{font-size:22px}
+  .home-next{grid-template-columns:auto 1fr}
+  .card{min-height:390px}
+  .card-main{grid-template-columns:96px minmax(0,1fr)}
+  .circle{width:90px;height:90px}
+  .live-project-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+
+/* Responsive orbit-dot radii */
+.orbit-stage{--orbit-r1:min(225px,21vh,19vw);--orbit-r2:min(165px,15.5vh,14vw);--orbit-r3:min(105px,10vh,9vw)}
+.orbit-stage .od1{animation-name:responsiveOrbit1 !important}
+.orbit-stage .od2{animation-name:responsiveOrbit2 !important}
+.orbit-stage .od3{animation-name:responsiveOrbit3 !important}
+@keyframes responsiveOrbit1{from{transform:rotate(0deg) translateX(var(--orbit-r1))}to{transform:rotate(360deg) translateX(var(--orbit-r1))}}
+@keyframes responsiveOrbit2{from{transform:rotate(0deg) translateX(var(--orbit-r2))}to{transform:rotate(360deg) translateX(var(--orbit-r2))}}
+@keyframes responsiveOrbit3{from{transform:rotate(0deg) translateX(var(--orbit-r3))}to{transform:rotate(360deg) translateX(var(--orbit-r3))}}
+@media (max-width:600px){
+  .orbit-stage{--orbit-r1:140px;--orbit-r2:102.5px;--orbit-r3:65px}
+}
+
+
+/* ==========================================================
+   FINAL RESPONSIVE FIX — KEEP HOME KPI STRIP INSIDE VIEWPORT
+   ========================================================== */
+html,body{
+  width:100%;
+  height:100%;
+  min-height:100%;
+  overflow:hidden;
+}
+#app{
+  width:100%;
+  height:100dvh;
+  min-height:0;
+}
+.screen{
+  display:flex;
+  flex-direction:column;
+  width:100%;
+  height:100dvh;
+  min-height:0;
+  overflow:hidden;
+}
+.screen > .top{
+  flex:0 0 auto;
+}
+.command-home{
+  flex:1 1 auto;
+  height:auto !important;
+  min-height:0;
+  overflow:hidden;
+  grid-template-rows:minmax(0,1fr) auto;
+}
+.command-home .home-strip{
+  flex:0 0 auto;
+  width:100%;
+  min-height:0;
+  margin-top:0;
+  padding-bottom:0;
+}
+.command-home .home-intro,
+.command-home .orbit-stage{
+  min-height:0;
+}
+@media (min-width:901px){
+  .command-home{
+    max-height:calc(100dvh - 70px);
+  }
+  .orbit-stage{
+    height:min(500px,52vh);
+    min-height:250px;
+  }
+  .home-strip{
+    margin-bottom:2px;
+  }
+}
+@media (max-height:760px) and (min-width:901px){
+  .screen{
+    padding-top:14px;
+    padding-bottom:12px;
+  }
+  .command-home{
+    max-height:calc(100dvh - 48px);
+  }
+  .home-intro h2{
+    font-size:clamp(32px,4.3vw,62px);
+    margin-top:8px;
+    margin-bottom:10px;
+    gap:8px;
+  }
+  .home-intro p{
+    font-size:10px;
+    line-height:1.7;
+  }
+  .gold-rule{margin-top:14px}
+  .orbit-stage{
+    height:min(390px,47vh);
+    min-height:220px;
+  }
+  .home-kpi,.home-next{
+    padding:7px 10px;
+  }
+  .home-kpi b{
+    font-size:22px;
+  }
+}
+@media (max-width:900px){
+  html,body{overflow:auto}
+  #app{height:auto;min-height:100dvh}
+  .screen{
+    height:auto;
+    min-height:100dvh;
+    overflow:visible;
+  }
+  .command-home{
+    flex:none;
+    height:auto !important;
+    min-height:calc(100dvh - 55px);
+    overflow:visible;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -732,10 +1010,10 @@
 </div>
 </section>
 
-<section class="screen" id="s1"><div class="top"><div class="brand"><h1>المشاريع</h1><p>PROJECT COMMAND • 01—04</p></div><div class="live"><i></i> LIVE DATA</div></div><div class="page-head"><div></div><p>01 — 04 / 13</p></div><div class="project-grid" id="p1"></div></section>
-<section class="screen" id="s2"><div class="top"><div class="brand"><h1>المشاريع</h1><p>PROJECT COMMAND • 05—08</p></div><div class="live"><i></i> LIVE DATA</div></div><div class="page-head"><div></div><p>05 — 08 / 13</p></div><div class="project-grid" id="p2"></div></section>
-<section class="screen" id="s3"><div class="top"><div class="brand"><h1>المشاريع</h1><p>PROJECT COMMAND • 09—12</p></div><div class="live"><i></i> LIVE DATA</div></div><div class="page-head"><div></div><p>09 — 12 / 13</p></div><div class="project-grid" id="p3"></div></section>
-<section class="screen" id="s4"><div class="top"><div class="brand"><h1>المشاريع</h1><p>PROJECT COMMAND • 13</p></div><div class="live"><i></i> LIVE DATA</div></div><div class="page-head"><div></div><p>13 / 13</p></div><div class="project-grid" id="p4"></div></section>
+<section class="screen" id="s1"><div class="top"><div class="brand"><h1>المشاريع</h1><p>PROJECT COMMAND • 01—04</p></div><div class="live sync-live"><i></i><span class="sync-label">آخر مزامنة: —</span></div></div><div class="page-head"><div></div><p>01 — 04 / 13</p></div><div class="project-grid" id="p1"></div></section>
+<section class="screen" id="s2"><div class="top"><div class="brand"><h1>المشاريع</h1><p>PROJECT COMMAND • 05—08</p></div><div class="live sync-live"><i></i><span class="sync-label">آخر مزامنة: —</span></div></div><div class="page-head"><div></div><p>05 — 08 / 13</p></div><div class="project-grid" id="p2"></div></section>
+<section class="screen" id="s3"><div class="top"><div class="brand"><h1>المشاريع</h1><p>PROJECT COMMAND • 09—12</p></div><div class="live sync-live"><i></i><span class="sync-label">آخر مزامنة: —</span></div></div><div class="page-head"><div></div><p>09 — 12 / 13</p></div><div class="project-grid" id="p3"></div></section>
+<section class="screen" id="s4"><div class="top"><div class="brand"><h1>المشاريع</h1><p>PROJECT COMMAND • 13</p></div><div class="live sync-live"><i></i><span class="sync-label">آخر مزامنة: —</span></div></div><div class="page-head"><div></div><p>13 / 13</p></div><div class="project-grid" id="p4"></div></section>
 <section class="screen dark" id="s5">
 <div class="top"><div class="brand"><h1>المستجدات والعد التنازلي</h1><p>LIVE UPDATES • FINAL COUNTDOWN</p></div><div class="live" style="color:#d8a33d"><i style="background:#d8a33d"></i> LIVE</div></div>
 <div class="live-command">
@@ -778,7 +1056,7 @@
    ========================================================== */
 const SHEET_ID = "1EX00BCwndJOXUKlimpiq8kGzVCZi2MIdJx4PCO44p7o";
 const SHEETS_API = "https://script.google.com/macros/s/AKfycbx9RtCQaOeqMqF422le-LlqbYQ-tF53NVWDmlfZhKjGXlcGRwdf3S6iiD6cw6dbLXFx5Q/exec"; // LIVE DATA SOURCE
-const REFRESH_MS = 30000;
+const REFRESH_MS = 4 * 60 * 1000; // مزامنة تلقائية كل 4 دقائق
 
 const fallbackProjects=[
 {id:"01",name:"منصة CRM للضيوف",team:"Marketing × IT",status:"قيد التنفيذ",pct:78,delivery:"30 أغسطس",start:"18 أغسطس",priority:"عالي",note:"ربط بيانات الضيف مع فريق الحجوزات",stages:["مكتمل","مكتمل","جاري التنفيذ","متبقي","متبقي"]},
@@ -818,6 +1096,74 @@ function parseDate(v){
   return m?new Date(+m[3],+m[2]-1,+m[1],23,59,59):null;
 }
 function setSheetStatus(ok,msg){const el=document.getElementById("sheetStatus");if(!el)return;el.textContent=msg|| (ok?"LIVE • GOOGLE SHEETS":"OFFLINE • FALLBACK DATA");el.className="sheet-status "+(ok?"ok":"err");}
+function formatSyncDate(date=new Date()){
+  return new Intl.DateTimeFormat("ar-SA-u-ca-gregory",{day:"2-digit",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit"}).format(date);
+}
+function markLastSync(){
+  const label=`آخر مزامنة: ${formatSyncDate()}`;
+  document.querySelectorAll(".sync-label").forEach(el=>el.textContent=label);
+}
+
+const CORS_PROXIES = [
+  "https://api.allorigins.win/raw?url=",
+  "https://corsproxy.io/?url="
+];
+
+async function fetchJsonDirectOrProxy(url, options={}){
+  const requestOptions={cache:"no-store",redirect:"follow",...options};
+  let directError=null;
+
+  /* 1) Try the real source first. */
+  try{
+    const res=await fetch(url,requestOptions);
+    if(!res.ok)throw new Error(`HTTP ${res.status}`);
+    const payload=await res.json();
+    return {payload,source:"direct"};
+  }catch(err){
+    directError=err;
+    console.warn("Direct request failed; trying CORS proxy fallback:",err);
+  }
+
+  /* 2) If GitHub Pages / file:// is blocked by CORS, try public CORS relays. */
+  for(const proxy of CORS_PROXIES){
+    try{
+      const proxyUrl=proxy+encodeURIComponent(url);
+      const res=await fetch(proxyUrl,{cache:"no-store",redirect:"follow"});
+      if(!res.ok)throw new Error(`Proxy HTTP ${res.status}`);
+      const text=await res.text();
+      let payload;
+      try{
+        payload=JSON.parse(text);
+      }catch{
+        throw new Error("Proxy returned non-JSON data");
+      }
+      return {payload,source:"cors-proxy"};
+    }catch(proxyError){
+      console.warn("CORS proxy failed:",proxy,proxyError);
+    }
+  }
+
+  throw directError||new Error("All data sources failed");
+}
+
+async function fetchTextDirectOrProxy(url){
+  try{
+    const res=await fetch(url,{cache:"no-store",redirect:"follow"});
+    if(!res.ok)throw new Error(`HTTP ${res.status}`);
+    return await res.text();
+  }catch(directError){
+    for(const proxy of CORS_PROXIES){
+      try{
+        const res=await fetch(proxy+encodeURIComponent(url),{cache:"no-store",redirect:"follow"});
+        if(!res.ok)throw new Error(`Proxy HTTP ${res.status}`);
+        return await res.text();
+      }catch(proxyError){
+        console.warn("CORS text proxy failed:",proxy,proxyError);
+      }
+    }
+    throw directError;
+  }
+}
 
 function mapProject(r){
   /* Supports both the raw sheet rows and the already-mapped Apps Script response. */
@@ -861,6 +1207,7 @@ function receiveData(data){
   if(d)countdownEnd=d.getTime();
   renderAll();
   updateCountdown();
+  markLastSync();
   setSheetStatus(true,"LIVE • GOOGLE SHEETS");
 }
 function parseGViz(text){
@@ -874,9 +1221,7 @@ function gvizRows(payload){
 }
 async function fetchGviz(sheet){
   const url=`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(sheet)}&ts=${Date.now()}`;
-  const res=await fetch(url,{cache:"no-store"});
-  if(!res.ok)throw new Error("GViz HTTP "+res.status);
-  return gvizRows(await res.text());
+  return gvizRows(await fetchTextDirectOrProxy(url));
 }
 async function syncFromGoogleSheets(){
   /*
@@ -887,18 +1232,19 @@ async function syncFromGoogleSheets(){
     FALLBACK: published Google Sheets GViz endpoints.
   */
   try{
-    const res=await fetch(SHEETS_API+"?ts="+Date.now(),{
-      cache:"no-store",
-      redirect:"follow",
+    const result=await fetchJsonDirectOrProxy(SHEETS_API+"?ts="+Date.now(),{
       headers:{Accept:"application/json"}
     });
-    if(!res.ok)throw new Error("Apps Script HTTP "+res.status);
-    const payload=await res.json();
+    const payload=result.payload;
     if(!payload || typeof payload!=="object")throw new Error("Invalid Apps Script JSON");
     receiveData(payload);
+    markLastSync();
+    if(result.source==="cors-proxy"){
+      setSheetStatus(true,"LIVE • CORS PROXY");
+    }
     return;
   }catch(primaryErr){
-    console.warn("Apps Script sync failed, trying direct Google Sheets GViz:",primaryErr);
+    console.warn("Apps Script sync failed, trying Google Sheets GViz with CORS fallback:",primaryErr);
   }
 
   try{
@@ -934,6 +1280,7 @@ async function syncFromGoogleSheets(){
 
     renderAll();
     updateCountdown();
+    markLastSync();
     setSheetStatus(true,"LIVE • GOOGLE SHEETS");
   }catch(err){
     console.warn("Google Sheets sync failed:",err);
@@ -1009,6 +1356,7 @@ initDots();
 renderAll();
 updateCountdown();
 show(0);scheduleNext();
+markLastSync();
 syncFromGoogleSheets();
 refreshTimer=setInterval(syncFromGoogleSheets,REFRESH_MS);
 countdownTimer=setInterval(updateCountdown,1000);
