@@ -1062,7 +1062,7 @@ html,body{
    ========================================================== */
 const PUBLISHED_SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTQH7cPOEH3QVQ92CuRkVfMt2F0bhRQKl08MyTDUuGXd0xs7NHmcC0O38pR6CIcT81PH1cOOSmBwulF/pubhtml";
 const PUBLISHED_SHEET_BASE = PUBLISHED_SHEET_URL.replace(/\/pubhtml(?:\?.*)?$/i, "");
-const REFRESH_MS = 60 * 1000; // مزامنة تلقائية كل دقيقة
+const REFRESH_MS = 30 * 1000; // مزامنة تلقائية كل 30 ثانية
 
 /* لا توجد بيانات محلية قديمة: الصفحة تبدأ فارغة حتى تصل بيانات الشيت. */
 let projects=[];
@@ -1106,31 +1106,47 @@ function markLastSync(){
 const CORS_PROXIES=[
   "https://api.allorigins.win/raw?url=",
   "https://corsproxy.io/?url=",
+  "https://api.codetabs.com/v1/proxy?quest=",
+  "https://thingproxy.freeboard.io/fetch/",
   "https://cors.isomorphic-git.org/"
 ];
+const FETCH_TIMEOUT_MS=9000; // كل محاولة (مباشرة أو بروكسي) لا تتجاوز 9 ثوانٍ قبل الانتقال للتالي
+
+function fetchWithTimeout(url,ms){
+  const controller=new AbortController();
+  const t=setTimeout(()=>controller.abort(),ms);
+  return fetch(url,{cache:"no-store",redirect:"follow",signal:controller.signal}).finally(()=>clearTimeout(t));
+}
 
 async function fetchTextDirectOrProxy(url){
-  let directError=null;
+  let lastError=null;
+
+  /* 1) المحاولة المباشرة إلى الشيت المنشور (تعمل عند الاستضافة على GitHub Pages عبر HTTPS) */
   try{
-    const res=await fetch(url,{cache:"no-store",redirect:"follow"});
+    const res=await fetchWithTimeout(url,FETCH_TIMEOUT_MS);
     if(!res.ok)throw new Error(`HTTP ${res.status}`);
     return {text:await res.text(),source:"direct"};
   }catch(err){
-    directError=err;
+    lastError=err;
     console.warn("Direct Google Sheets request failed; trying CORS proxies:",err);
   }
 
+  /* 2) ممر بديل تلقائي (CORS Proxy Fallback) — يجرب كل بروكسي بالترتيب حتى ينجح أحدها،
+     يفيد خصوصًا عند فتح الملف محليًا (file://) حيث يمنع المتصفح الطلب المباشر */
   for(const proxy of CORS_PROXIES){
     try{
       const proxyUrl=proxy+encodeURIComponent(url);
-      const res=await fetch(proxyUrl,{cache:"no-store",redirect:"follow"});
+      const res=await fetchWithTimeout(proxyUrl,FETCH_TIMEOUT_MS);
       if(!res.ok)throw new Error(`Proxy HTTP ${res.status}`);
-      return {text:await res.text(),source:"cors-proxy"};
+      const text=await res.text();
+      if(!text||!text.trim())throw new Error("Empty proxy response");
+      return {text,source:"cors-proxy"};
     }catch(proxyError){
+      lastError=proxyError;
       console.warn("CORS proxy failed:",proxy,proxyError);
     }
   }
-  throw directError||new Error("All Google Sheets data routes failed");
+  throw lastError||new Error("All Google Sheets data routes failed");
 }
 
 function parseGViz(text){
