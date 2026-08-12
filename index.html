@@ -1062,7 +1062,7 @@ html,body{
    ========================================================== */
 const PUBLISHED_SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTQH7cPOEH3QVQ92CuRkVfMt2F0bhRQKl08MyTDUuGXd0xs7NHmcC0O38pR6CIcT81PH1cOOSmBwulF/pubhtml";
 const PUBLISHED_SHEET_BASE = PUBLISHED_SHEET_URL.replace(/\/pubhtml(?:\?.*)?$/i, "");
-const REFRESH_MS = 4 * 60 * 1000; // مزامنة تلقائية كل 4 دقائق
+const REFRESH_MS = 60 * 1000; // مزامنة تلقائية كل دقيقة
 
 /* لا توجد بيانات محلية قديمة: الصفحة تبدأ فارغة حتى تصل بيانات الشيت. */
 let projects=[];
